@@ -365,20 +365,24 @@ main {
 }
 .btn {
     width: 100%;
-    margin: auto
+    margin: auto;
+    outline: none;
 }
 .btnDirection {
     color: white;
+    outline: none;
+    text-decoration: none;
     width: 150px;
     padding: 9px;
     font-size: 17px;
     border: none;
     border-radius: 20px;
-    transition: transform 0.5s;
+    transition: all 0.5s;
     background-image: linear-gradient(to bottom right,#fbdb89,#f48982);
 }
 .btnDirection:hover {
     transform: scale(1.1);
+    color: white;
 }
 
 

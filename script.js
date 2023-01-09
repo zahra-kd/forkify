@@ -22,11 +22,13 @@ const appendResults = (page, arr) => {
         }) 
         .then((result) =>{
             $("#recipe").css("display", "block")
+            $("#displayContainer").css("height", "auto")
             $(".recipeInfo").empty()
             $(".recipeInfo").append(`<img class="recipeImg" src="${result.recipe.image_url}" alt="recipe image"/>
             <h4 class="recipeName">${result.recipe.title}</h4>
             `)
             $(".recipeIngredient").empty()
+            $(".recipeDirection").empty()
             $(".recipeIngredient").append(`
             <h5 class="title">RECIPE INGREDIENTS</h5>
             <ul class="ingredientList">${result.recipe.ingredients.map((element)=> {
@@ -35,7 +37,7 @@ const appendResults = (page, arr) => {
             $(".recipeDirection").append(`
             <h5 class="title">HOW TO COOK IT</h5>
             <p class="additionalInfo">This recipe was carefully designed and tested by <span class="publisher">${result.recipe.publisher}</span>. Please check out directions at their website.</p>
-            
+            <div class="btn"><a href="${result.recipe.source_url}" target="_blank" class="btnDirection">DIRECTIONS <i class="fa-solid fa-arrow-right-long"></i></a></div>
             `)
         })
     })
@@ -54,6 +56,9 @@ $('#searchForm').submit((event) => {
         if (response.ok) {
             return response.json()
         } else {
+            $("#displayResult").empty();
+            $("#prev").hide();
+            $("#next").hide();
             $(".lds-dual-ring").css("display", "none")
             $("aside").append(`<div class="errorMsg">
             <i class="fa-solid fa-triangle-exclamation">
